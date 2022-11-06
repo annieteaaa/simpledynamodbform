@@ -1,4 +1,4 @@
-##Run the following to start the application:
+Run the following to start the application:
 
 ```
 cd server/dynamodb_local_latest
@@ -15,5 +15,5 @@ cd client
 yarn start
 ```
 
-##To view tables:
+To view tables:
 VIEW TABLES: aws dynamodb list-tables --endpoint-url http://localhost:8000
