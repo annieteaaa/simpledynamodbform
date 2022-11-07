@@ -22,6 +22,7 @@ function Confirmation({ id }: Props) {
     if (!!id) {
       //define our async function for calling API and retrieving info
       const getById = async (id: number) => {
+        setLoading(true);
         const res = await fetch(`/registration/${id}`);
         const data = await res.json();
 
@@ -34,14 +35,13 @@ function Confirmation({ id }: Props) {
           phone: data.phone.S,
         };
         setFormInfo(dataInfo);
+        setLoading(false);
       };
-      setLoading(true);
       try {
         getById(id);
       } catch (e) {
         console.error(e);
       }
-      setLoading(false);
     }
   }, [id]);
 
