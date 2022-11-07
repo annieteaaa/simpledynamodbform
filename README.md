@@ -21,4 +21,8 @@ To view tables:
 aws dynamodb list-tables --endpoint-url http://localhost:8000
 ```
 
+To view Registration table details:
+
+```
 aws dynamodb describe-table --table-name Registrations --endpoint-url http://localhost:8000
+```
