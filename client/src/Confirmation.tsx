@@ -4,6 +4,7 @@ interface Props {
   id: number;
 }
 
+//form info type
 interface FormInfo {
   id: number;
   firstName: String;
@@ -13,18 +14,18 @@ interface FormInfo {
 }
 
 function Confirmation({ id }: Props) {
-  //
   const [formInfo, setFormInfo] = useState<FormInfo | null | undefined>();
   const [loading, setLoading] = useState(false);
 
-  //fetch our information on successful submit
+  //fetch our information on successful submission (after id is set)
   useEffect(() => {
     if (!!id) {
-      setLoading(true);
+      //define our async function for calling API and retrieving info
       const getById = async (id: number) => {
         const res = await fetch(`/registration/${id}`);
         const data = await res.json();
 
+        //processing data returned by dynamodb
         const dataInfo = {
           id: data.id.N,
           firstName: data.firstName.S,
@@ -32,9 +33,9 @@ function Confirmation({ id }: Props) {
           email: data.email.S,
           phone: data.phone.S,
         };
-
         setFormInfo(dataInfo);
       };
+      setLoading(true);
       try {
         getById(id);
       } catch (e) {
